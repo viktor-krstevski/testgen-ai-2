@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestGen AI - Автоматизација на тестови со AI</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="bi bi-cpu"></i> TestGen AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Почетна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#generator">Генератор</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison">Споредба</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#history">Историја</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <button class="btn btn-outline-custom btn-sm" onclick="showPage('login')">
+                            <i class="bi bi-box-arrow-in-right"></i> Најава
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div id="landing-page" style="padding-top: 76px;">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Генерирај тестови со AI</h1>
+                <p class="hero-subtitle">
+                    Автоматски генерирај Selenium и Playwright тестови со помош на вештачка интелигенција
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary-custom btn-lg" onclick="showPage('generator')">
+                        <i class="bi bi-rocket-takeoff"></i> Започни сега
+                    </button>
+                    <button class="btn btn-outline-custom btn-lg">
+                        <i class="bi bi-play-circle"></i> Погледни демо
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">AI Модели</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Framework-ови</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Бесплатно</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Можности</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Главни функционалности</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-lightning-charge"></i>
+                            </div>
+                            <h4>Брзо Генерирање</h4>
+                            <p class="text-secondary">Генерирај комплетни тестови во секунди со само еден клик</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-cpu"></i>
+                            </div>
+                            <h4>Повеќе AI Модели</h4>
+                            <p class="text-secondary">Споредба помеѓу GPT-4, Claude и Gemini за најдобри резултати</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-code-slash"></i>
+                            </div>
+                            <h4>Selenium & Playwright</h4>
+                            <p class="text-secondary">Поддршка за двата најпопуларни test automation framework-а</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-translate"></i>
+                            </div>
+                            <h4>Многујазичност</h4>
+                            <p class="text-secondary">Пишувај инструкции на македонски или англиски јазик</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <h4>Историја</h4>
+                            <p class="text-secondary">Зачувај и пристапи до сите претходно генерирани тестови</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-custom p-4 h-100">
+                            <div class="feature-icon">
+                                <i class="bi bi-download"></i>
+                            </div>
+                            <h4>Export</h4>
+                            <p class="text-secondary">Преземи ги тестовите како готови .py или .js фајлови</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" style="display: none; padding-top: 76px; min-height: 100vh;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 76px);">
+                <div class="col-md-5">
+                    <div class="card-custom p-5">
+                        <div class="text-center mb-4">
+                            <h2>Најави се</h2>
+                            <p class="text-secondary">Продолжи кон генерирање тестови</p>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Email адреса</label>
+                                <input type="email" class="form-control input-custom" placeholder="пример@email.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Лозинка</label>
+                                <input type="password" class="form-control input-custom" placeholder="••••••••">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Запомни ме</label>
+                            </div>
+                            <button type="button" class="btn btn-primary-custom w-100 mb-3" onclick="showPage('generator')">
+                                <i class="bi bi-box-arrow-in-right"></i> Најави се
+                            </button>
+                            <div class="text-center">
+                                <a href="#" class="text-decoration-none" style="color: var(--primary-color);">
+                                    Заборавена лозинка?
+                                </a>
+                            </div>
+                            <hr class="my-4">
+                            <div class="text-center">
+                                <span class="text-secondary">Немаш профил?</span>
+                                <a href="#" class="text-decoration-none ms-2" style="color: var(--primary-color);">
+                                    Регистрирај се
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generator Page -->
+    <div id="generator-page" style="display: none; padding-top: 76px;">
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2><i class="bi bi-magic"></i> Генератор на тестови</h2>
+                    <p class="text-secondary">Внеси инструкции на природен јазик и генерирај автоматски тестови</p>
+                </div>
+            </div>
+
+            <!-- Model Selection -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h5 class="mb-3">Избери AI Модел</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="model-card active" onclick="selectModel(this, 'gpt4')">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">GPT-4 Turbo</h5>
+                                        <small class="text-secondary">OpenAI</small>
+                                    </div>
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="badge badge-custom">Најбрз</span>
+                                    <span class="badge badge-custom">Точен</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="model-card" onclick="selectModel(this, 'claude')">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">Claude 3.5</h5>
+                                        <small class="text-secondary">Anthropic</small>
+                                    </div>
+                                    <i class="bi bi-circle" style="font-size: 1.5rem; color: var(--border-color);"></i>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="badge badge-custom">Детален</span>
+                                    <span class="badge badge-custom">Креативен</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="model-card" onclick="selectModel(this, 'gemini')">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-1">Gemini Pro</h5>
+                                        <small class="text-secondary">Google</small>
+                                    </div>
+                                    <i class="bi bi-circle" style="font-size: 1.5rem; color: var(--border-color);"></i>
+                                </div>
+                                <div class="mt-2">
+                                    <span class="badge badge-custom">Разновиден</span>
+                                    <span class="badge badge-custom">Силен</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Framework Selection -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h5 class="mb-3">Избери Framework</h5>
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="framework" id="selenium" checked>
+                        <label class="btn btn-outline-custom" for="selenium">
+                            <i class="bi bi-code-square"></i> Selenium (Python)
+                        </label>
+
+                        <input type="radio" class="btn-check" name="framework" id="playwright">
+                        <label class="btn btn-outline-custom" for="playwright">
+                            <i class="bi bi-play-circle"></i> Playwright (JavaScript)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h5 class="mb-3">Внеси инструкции</h5>
+                    <textarea id="test-instructions" class="form-control input-custom" rows="5" placeholder="Пример: Отвори ја страната за курсеви на ФИНКИ, внеси индекс и лозинка, кликни на 'Најави се'"></textarea>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <small class="text-secondary">
+                            <i class="bi bi-info-circle"></i> Опиши го тестот што сакаш да го генерираш на природен јазик
+                        </small>
+                        <button class="btn btn-primary-custom" onclick="generateTest()">
+                            <i class="bi bi-stars"></i> Генерирај тест
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Area -->
+            <div class="row">
+                <div class="col">
+                    <h5 class="mb-3">Генериран код</h5>
+                    <div class="code-display">
+                        <div class="code-header">
+                            <div>
+                                <span class="model-badge gpt">GPT-4 Turbo</span>
+                                <span class="badge badge-custom">Selenium</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyCode()">
+                                <i class="bi bi-clipboard"></i> Копирај
+                            </button>
+                        </div>
+                        <div id="code-output" class="text-secondary">
+                            <i class="bi bi-code-slash"></i> Генерираниот код ќе се појави овде...
+                        </div>
+                    </div>
+                    <div class="mt-3 d-flex gap-2">
+                        <button class="btn btn-outline-custom">
+                            <i class="bi bi-download"></i> Преземи .py
+                        </button>
+                        <button class="btn btn-outline-custom">
+                            <i class="bi bi-save"></i> Зачувај во историја
+                        </button>
+                        <button class="btn btn-outline-custom">
+                            <i class="bi bi-share"></i> Сподели
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Page -->
+    <div id="comparison-page" style="display: none; padding-top: 76px;">
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2><i class="bi bi-bar-chart"></i> Споредба на AI модели</h2>
+                    <p class="text-secondary">Генерирај тестови со сите модели и споредувај ги резултатите</p>
+                </div>
+            </div>
+
+            <!-- Input for comparison -->
+            <div class="row mb-4">
+                <div class="col">
+                    <textarea id="comparison-instructions" class="form-control input-custom" rows="3" placeholder="Внеси инструкции за споредба..."></textarea>
+                    <div class="text-end mt-3">
+                        <button class="btn btn-primary-custom" onclick="generateComparison()">
+                            <i class="bi bi-stars"></i> Генерирај со сите модели
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Results -->
+            <div class="comparison-container">
+                <div class="comparison-card">
+                    <span class="model-badge gpt">GPT-4 Turbo</span>
+                    <div class="code-display" style="min-height: 400px;">
+                        <div class="text-secondary text-center" id="gpt-output">
+                            <i class="bi bi-code-slash"></i>
+                            <p class="mt-2">Резултатот ќе се појави овде...</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-secondary">
+                            <i class="bi bi-clock"></i> Време: <span id="gpt-time">-</span>
+                        </small>
+                        <button class="copy-btn float-end" onclick="copyComparisonCode('gpt')">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="model-badge claude">Claude 3.5</span>
+                    <div class="code-display" style="min-height: 400px;">
+                        <div class="text-secondary text-center" id="claude-output">
+                            <i class="bi bi-code-slash"></i>
+                            <p class="mt-2">Резултатот ќе се појави овде...</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-secondary">
+                            <i class="bi bi-clock"></i> Време: <span id="claude-time">-</span>
+                        </small>
+                        <button class="copy-btn float-end" onclick="copyComparisonCode('claude')">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <span class="model-badge gemini">Gemini Pro</span>
+                    <div class="code-display" style="min-height: 400px;">
+                        <div class="text-secondary text-center" id="gemini-output">
+                            <i class="bi bi-code-slash"></i>
+                            <p class="mt-2">Резултатот ќе се појави овде...</p>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-secondary">
+                            <i class="bi bi-clock"></i> Време: <span id="gemini-time">-</span>
+                        </small>
+                        <button class="copy-btn float-end" onclick="copyComparisonCode('gemini')">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Page -->
+    <div id="history-page" style="display: none; padding-top: 76px;">
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col">
+                    <h2><i class="bi bi-clock-history"></i> Историја на генерирани тестови</h2>
+                    <p class="text-secondary">Пристапи до сите твои претходно генерирани тестови</p>
+                </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <input type="text" class="form-control input-custom" placeholder="Пребарај во историјата...">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select input-custom">
+                        <option>Сите модели</option>
+                        <option>GPT-4</option>
+                        <option>Claude</option>
+                        <option>Gemini</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- History Timeline -->
+            <div class="row">
+                <div class="col" id="history-container">
+                    <div class="history-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5>ФИНКИ Login Test</h5>
+                                <p class="text-secondary mb-2">Отвори ја страната за курсеви на ФИНКИ, внеси индекс и лозинка...</p>
+                                <span class="model-badge gpt">GPT-4</span>
+                                <span class="badge badge-custom">Selenium</span>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-secondary">10.02.2026 15:30</small>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm copy-btn">
+                                        <i class="bi bi-eye"></i> Прегледај
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5>E-Commerce Cart Test</h5>
+                                <p class="text-secondary mb-2">Navigate to shop, add items to cart, proceed to checkout...</p>
+                                <span class="model-badge claude">Claude</span>
+                                <span class="badge badge-custom">Playwright</span>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-secondary">09.02.2026 12:15</small>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm copy-btn">
+                                        <i class="bi bi-eye"></i> Прегледај
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5>Form Validation Test</h5>
+                                <p class="text-secondary mb-2">Test form validation with invalid and valid inputs...</p>
+                                <span class="model-badge gemini">Gemini</span>
+                                <span class="badge badge-custom">Selenium</span>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-secondary">08.02.2026 09:45</small>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm copy-btn">
+                                        <i class="bi bi-eye"></i> Прегледај
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html>
