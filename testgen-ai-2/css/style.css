@@ -4,13 +4,19 @@
 :root {
     --primary-color: #6366f1;
     --secondary-color: #8b5cf6;
-    --dark-bg: #0f172a;
-    --card-bg: #1e293b;
-    --border-color: #334155;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
+    --bg-main: #f0f2f5;
+    --bg-white: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
     --success-color: #10b981;
-    --code-bg: #1e1e1e;
+    --code-bg: #1e1e2e;
+    --nav-bg: #ffffff;
+    --hero-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -18,7 +24,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+    background: var(--bg-main);
     color: var(--text-primary);
     min-height: 100vh;
 }
@@ -27,9 +33,21 @@ body {
    Navbar Styles
    =================================== */
 .navbar-custom {
-    background: rgba(15, 23, 42, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--primary-color) !important;
 }
 
 .navbar-brand {
@@ -41,6 +59,14 @@ body {
     background-clip: text;
 }
 
+.navbar-toggler {
+    border-color: var(--border-color);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
 /* ===================================
    Card Styles
    =================================== */
@@ -49,11 +75,12 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 16px;
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .card-custom:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* ===================================
@@ -62,6 +89,7 @@ body {
 .btn-primary-custom {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border: none;
+    color: #fff;
     padding: 12px 30px;
     border-radius: 10px;
     font-weight: 600;
@@ -70,7 +98,8 @@ body {
 
 .btn-primary-custom:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+    color: #fff;
 }
 
 .btn-outline-custom {
@@ -92,31 +121,51 @@ body {
    Hero Section
    =================================== */
 .hero-section {
-    padding: 100px 0;
+    padding: 100px 0 80px;
     text-align: center;
+    background: var(--hero-bg);
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 40px;
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff;
 }
 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 40px;
+}
+
+.hero-section .btn-primary-custom {
+    background: #fff;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.hero-section .btn-primary-custom:hover {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.hero-section .btn-outline-custom {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+}
+
+.hero-section .btn-outline-custom:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
 }
 
 /* ===================================
    Input & Form Styles
    =================================== */
 .input-custom {
-    background: var(--code-bg);
+    background: var(--bg-white);
     border: 2px solid var(--border-color);
     color: var(--text-primary);
     border-radius: 12px;
@@ -128,7 +177,7 @@ body {
 .input-custom:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-    background: var(--card-bg);
+    background: var(--bg-white);
     color: var(--text-primary);
 }
 
@@ -157,7 +206,7 @@ body {
     align-items: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .code-display pre {
@@ -181,6 +230,7 @@ body {
     padding: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .model-card:hover {
@@ -190,7 +240,8 @@ body {
 
 .model-card.active {
     border-color: var(--primary-color);
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(99, 102, 241, 0.06);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
 /* ===================================
@@ -205,6 +256,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
+    color: #fff;
     margin-bottom: 15px;
 }
 
@@ -217,6 +269,7 @@ body {
     border-radius: 12px;
     padding: 25px;
     text-align: center;
+    box-shadow: var(--shadow-sm);
 }
 
 .stat-number {
@@ -253,19 +306,15 @@ body {
 }
 
 @keyframes blink {
-    0%, 80%, 100% { 
-        opacity: 0; 
-    }
-    40% { 
-        opacity: 1; 
-    }
+    0%, 80%, 100% { opacity: 0; }
+    40% { opacity: 1; }
 }
 
 /* ===================================
    Badges
    =================================== */
 .badge-custom {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.1);
     color: var(--primary-color);
     padding: 5px 12px;
     border-radius: 6px;
@@ -282,18 +331,18 @@ body {
 }
 
 .model-badge.gpt {
-    background: rgba(16, 185, 129, 0.2);
-    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
 }
 
 .model-badge.claude {
-    background: rgba(168, 85, 247, 0.2);
-    color: #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+    color: #7c3aed;
 }
 
 .model-badge.gemini {
-    background: rgba(59, 130, 246, 0.2);
-    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
 }
 
 /* ===================================
@@ -310,13 +359,14 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 20px;
+    box-shadow: var(--shadow-sm);
 }
 
 /* ===================================
    Copy Button
    =================================== */
 .copy-btn {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(99, 102, 241, 0.08);
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     padding: 8px 16px;
@@ -341,11 +391,62 @@ body {
     margin-bottom: 15px;
     border-radius: 8px;
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .history-item:hover {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(99, 102, 241, 0.04);
     transform: translateX(5px);
+}
+
+/* ===================================
+   Login / Register Cards
+   =================================== */
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.auth-card .form-control {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.auth-card .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    background: var(--bg-white);
+}
+
+.auth-card .form-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* ===================================
+   Section Headers
+   =================================== */
+.section-header h2 {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.section-header p {
+    color: var(--text-secondary);
+}
+
+/* ===================================
+   Page containers
+   =================================== */
+.page-container {
+    padding-top: 76px;
 }
 
 /* ===================================
@@ -355,17 +456,21 @@ body {
     .hero-title {
         font-size: 2.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.1rem;
     }
-    
+
     .comparison-container {
         grid-template-columns: 1fr;
     }
-    
+
     .stat-number {
         font-size: 2rem;
+    }
+
+    .hero-section {
+        border-radius: 0 0 24px 24px;
     }
 }
 
@@ -373,13 +478,13 @@ body {
     .hero-title {
         font-size: 2rem;
     }
-    
+
     .btn-primary-custom,
     .btn-outline-custom {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    
+
     .feature-icon {
         width: 50px;
         height: 50px;
@@ -395,12 +500,4 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.shadow-custom {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-.transition-all {
-    transition: all 0.3s ease;
 }
