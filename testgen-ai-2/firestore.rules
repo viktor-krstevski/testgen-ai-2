@@ -6,5 +6,9 @@ service cloud.firestore {
       allow read, delete: if request.auth != null && resource.data.userId == request.auth.uid;
       allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
     }
+    match /feedback/{docId} {
+      allow create: if true;
+      allow read: if request.auth != null;
+    }
   }
 }

@@ -41,6 +41,10 @@ window.showPage = function(pageName) {
         window.loadUserHistory();
     }
 
+    if (pageName === 'comparison' && typeof window.loadFeedbackStats === 'function') {
+        window.loadFeedbackStats();
+    }
+
     // Collapse mobile nav
     const navCollapse = document.getElementById('navbarNav');
     if (navCollapse && navCollapse.classList.contains('show')) {

@@ -248,6 +248,20 @@ window.generateTest = async function() {
     if (window.auth?.currentUser && typeof window.saveTestToHistory === 'function') {
         await window.saveTestToHistory(prompt, generatedCode, model, framework);
     }
+
+    // Show feedback section
+    window._currentFeedbackMeta = { prompt, model, framework };
+    window._currentRating = 0;
+    const feedbackSection = document.getElementById('feedback-section');
+    if (feedbackSection) {
+        feedbackSection.style.removeProperty('display');
+        feedbackSection.style.display = 'block';
+    }
+    const feedbackSuccess = document.getElementById('feedback-success');
+    if (feedbackSuccess) feedbackSuccess.style.display = 'none';
+    const comment = document.getElementById('feedback-comment');
+    if (comment) comment.value = '';
+    setRating(0);
 };
 
 window.generateComparison = async function() {
@@ -302,4 +316,86 @@ window.generateComparison = async function() {
     }
 
     if (compareBtn) compareBtn.disabled = false;
+
+    // Collect results for chart
+    const chartData = {};
+    models.forEach(m => {
+        const el = document.getElementById(m + '-output');
+        const time = document.getElementById(m + '-time');
+        const code = el ? el.textContent : '';
+        const lines = code.split('\n').filter(l => l.trim()).length;
+        const timeVal = parseFloat((time ? time.textContent : '0').replace('s','')) || 0;
+        chartData[m] = { lines, time: timeVal };
+    });
+    renderComparisonCharts(chartData);
+};
+
+window.renderComparisonCharts = function(data) {
+    const section = document.getElementById('comparison-chart-section');
+    if (section) section.style.display = 'block';
+
+    const labels = ['GPT-4', 'Claude', 'Gemini'];
+    const colors = ['rgba(16,185,129,0.8)', 'rgba(168,85,247,0.8)', 'rgba(59,130,246,0.8)'];
+    const borderColors = ['#059669', '#7c3aed', '#2563eb'];
+    const keys = ['gpt', 'claude', 'gemini'];
+
+    const speedCtx = document.getElementById('chart-speed');
+    const linesCtx = document.getElementById('chart-lines');
+
+    if (window._chartSpeed) window._chartSpeed.destroy();
+    if (window._chartLines) window._chartLines.destroy();
+
+    window._chartSpeed = new Chart(speedCtx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Брзина (секунди)',
+                data: keys.map(k => data[k].time),
+                backgroundColor: colors,
+                borderColor: borderColors,
+                borderWidth: 2,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false }, title: { display: true, text: 'Време на одговор (пониско = подобро)', font: { size: 13 } } },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'секунди' } } }
+        }
+    });
+
+    window._chartLines = new Chart(linesCtx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Линии код',
+                data: keys.map(k => data[k].lines),
+                backgroundColor: colors,
+                borderColor: borderColors,
+                borderWidth: 2,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false }, title: { display: true, text: 'Линии код (повеќе = подетален)', font: { size: 13 } } },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'линии' } } }
+        }
+    });
+
+    // Recommend model: fastest that has > 5 lines of code
+    const modelNames = { gpt: 'GPT-4 Turbo', claude: 'Claude 3.5', gemini: 'Gemini Pro' };
+    const valid = keys.filter(k => data[k].lines > 5);
+    if (valid.length > 0) {
+        const fastest = valid.reduce((a, b) => data[a].time < data[b].time ? a : b);
+        const mostDetailed = valid.reduce((a, b) => data[a].lines > data[b].lines ? a : b);
+        const recEl = document.getElementById('recommended-model');
+        const nameEl = document.getElementById('recommended-model-name');
+        const reasonEl = document.getElementById('recommended-reason');
+        if (recEl && nameEl && reasonEl) {
+            nameEl.textContent = modelNames[fastest];
+            reasonEl.textContent = ` — најбрз (${data[fastest].time}s) | Најдетален: ${modelNames[mostDetailed]} (${data[mostDetailed].lines} линии)`;
+            recEl.style.display = 'block';
+        }
+    }
 };
